@@ -1,0 +1,142 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Scripts/draw_and_control_thepoints.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/mathcal_and_drawVectors.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/vector_field_region.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/LabelTitle.gd" type="Script" id=4]
+[ext_resource path="res://Scripts/Control.gd" type="Script" id=5]
+[ext_resource path="res://Scripts/diamond_illustration.gd" type="Script" id=6]
+[ext_resource path="res://image.png" type="Texture" id=7]
+[ext_resource path="res://shader_material.tres" type="Material" id=9]
+
+[node name="main" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 800.0
+margin_bottom = 600.0
+color = Color( 0.962083, 0.436935, 0.972656, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="vector_field_region" type="Line2D" parent="CanvasLayer"]
+script = ExtResource( 3 )
+
+[node name="xaxis_label" type="Label" parent="CanvasLayer"]
+margin_right = 40.0
+margin_bottom = 14.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="yaxis_label" type="Label" parent="CanvasLayer"]
+margin_right = 40.0
+margin_bottom = 14.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="mathcal_and_drawVectors" type="Line2D" parent="CanvasLayer"]
+script = ExtResource( 2 )
+
+[node name="draw_and_control_thepoints" type="Line2D" parent="CanvasLayer"]
+script = ExtResource( 1 )
+
+[node name="slider_title" type="Label" parent="CanvasLayer/draw_and_control_thepoints"]
+margin_right = 40.0
+margin_bottom = 14.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="CanvasLayer/draw_and_control_thepoints"]
+material = ExtResource( 9 )
+position = Vector2( 200, 200 )
+scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 7 )
+
+[node name="HSlider_kernelL" type="HSlider" parent="CanvasLayer"]
+margin_right = 16.0
+margin_bottom = 16.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label_kernelL_title" type="Label" parent="CanvasLayer/HSlider_kernelL"]
+margin_right = 40.0
+margin_bottom = 14.0
+
+[node name="Label_kernelL_value" type="Label" parent="CanvasLayer/HSlider_kernelL"]
+margin_right = 40.0
+margin_bottom = 14.0
+
+[node name="diamond_illustration" type="Line2D" parent="CanvasLayer"]
+script = ExtResource( 6 )
+
+[node name="Label_forx" type="Label" parent="CanvasLayer/diamond_illustration"]
+margin_right = 40.0
+margin_bottom = 14.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label_fory" type="Label" parent="CanvasLayer/diamond_illustration"]
+margin_right = 40.0
+margin_bottom = 14.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label_title" type="Label" parent="CanvasLayer/diamond_illustration"]
+margin_right = 40.0
+margin_bottom = 14.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label_numberOfPoints" type="Label" parent="Control"]
+margin_right = 40.0
+margin_bottom = 14.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button_add" type="Button" parent="Control"]
+margin_right = 12.0
+margin_bottom = 20.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button_subtract" type="Button" parent="Control"]
+margin_right = 12.0
+margin_bottom = 20.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CanvasLayer_start_instruction" type="CanvasLayer" parent="."]
+
+[node name="LabelTitle" type="Label" parent="."]
+margin_left = 100.0
+margin_top = 70.0
+margin_right = 140.0
+margin_bottom = 84.0
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite_mathequation" type="Sprite" parent="."]
+[connection signal="button_down" from="Control/Button_add" to="Control" method="_on_Button_add_button_down"]
+[connection signal="button_down" from="Control/Button_subtract" to="Control" method="_on_Button_subtract_button_down"]
